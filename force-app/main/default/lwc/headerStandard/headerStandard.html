@@ -1,0 +1,22 @@
+<template>
+    <header class="slds-header_container slds-grid slds-grid_align-spread slds-grid_vertical-align-center slds-p-horizontal_small">
+        <!-- Logo and App Name -->
+        <div class="slds-global-header__item">
+            <img src="/resource/companyLogo" alt="Company Logo" class="slds-avatar slds-avatar_medium"/>
+            <span class="slds-text-heading_small slds-m-left_small">LWC Boilerplate</span>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="slds-global-header__item slds-grid slds-grid_vertical-align-center slds-gap_small">
+            <lightning-button variant="base" label="Home" title="Home" onclick={navigateHome}></lightning-button>
+            <lightning-button variant="base" label="Accounts" title="Accounts" onclick={navigateAccounts}></lightning-button>
+            <lightning-button variant="base" label="Dashboard" title="Dashboard" onclick={navigateDashboard}></lightning-button>
+        </nav>
+
+        <!-- User Info -->
+        <div class="slds-global-header__item">
+            <lightning-avatar alternative-text="User Avatar" size="small" variant="circle" initials={userInitials}></lightning-avatar>
+            <span class="slds-m-left_x-small">Hello, {userName}</span>
+        </div>
+    </header>
+</template>

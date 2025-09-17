@@ -1,0 +1,36 @@
+<!--
+  @description                : 
+  @author                     : Akash Das
+  @group                      : 
+  @last modified on           : 09-16-2025
+  @last modified by           : Akash Das
+  @last modification details  :  
+  Modifications Log
+  Ver   Date         Author      Modification
+  1.0   09-16-2025   Akash Das   Initial Version
+-->
+<template>
+    <c-header-standard user-name="Akash Das"></c-header-standard>
+
+    <main class="slds-p-around_medium" style="min-height: calc(100vh - 120px);">
+        <c-error-boundary component-name="TestError">
+            <c-test-error></c-test-error>
+        </c-error-boundary>
+
+    </main>
+
+    <lightning-input 
+        type="text" 
+        label="Enter some text" 
+        onchange={handleInputChange}
+        class="taller-input">
+    </lightning-input>
+
+    <lightning-textarea 
+    label="Enter some text" 
+    onchange={handleInputChange}
+    class="custom-textarea">
+    </lightning-textarea>
+
+    <c-footer-standard></c-footer-standard>
+</template>

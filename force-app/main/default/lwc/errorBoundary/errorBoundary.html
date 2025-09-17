@@ -1,0 +1,10 @@
+<template>
+    <template if:true={hasError}>
+        <div class="error-boundary">
+            <p>Something went wrong. Please try again later.</p>
+        </div>
+    </template>
+    <template if:false={hasError}>
+        <slot></slot> <!-- Render child components -->
+    </template>
+</template>

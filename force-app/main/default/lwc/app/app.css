@@ -1,0 +1,9 @@
+.custom-textarea {
+    --slds-c-textarea-sizing-min-height: 10rem;
+}
+
+.taller-input lightning-input {
+    --slds-c-input-textarea-sizing-min-height: 13rem; /* adjusts height */
+    --slds-c-input-sizing-min-height: 13rem;          /* for text input */
+    font-size: 1rem; /* optional, to make text bigger */
+}

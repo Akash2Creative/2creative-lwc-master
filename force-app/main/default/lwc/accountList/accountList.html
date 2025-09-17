@@ -1,0 +1,84 @@
+<!--
+  @description                : 
+  @author                     : Akash Das
+  @group                      : 
+  @last modified on           : 09-16-2025
+  @last modified by           : Akash Das
+  @last modification details  :  
+  Modifications Log
+  Ver   Date         Author      Modification
+  1.0   09-16-2025   Akash Das   Initial Version
+-->
+<template>
+    <lightning-card title="Accounts" icon-name="standard:account">
+        <div class="slds-p-around_small">
+            <div class="controls slds-grid slds-grid_align-spread slds-m-bottom_small">
+                <div class="slds-col">
+                    <lightning-input
+                        type="search"
+                        name="search"
+                        label="Search Accounts"
+                        value={searchKey}
+                        onchange={onSearchChange}
+                        placeholder="Search by name..."
+                        class="search-input"
+                    ></lightning-input>
+                </div>
+
+                <div class="slds-col shrink">
+                    <lightning-button
+                        variant="brand"
+                        label="Refresh"
+                        title="Refresh"
+                        onclick={loadAccounts}
+                        class="slds-m-left_x-small"
+                    ></lightning-button>
+                </div>
+            </div>
+
+            <template if:true={loading}>
+                <div class="spinner-wrapper">
+                    <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                </div>
+            </template>
+
+            <template if:false={loading}>
+                <template if:true={hasData}>
+                    <lightning-datatable
+                        key-field="Id"
+                        data={accounts}
+                        columns={columns}
+                        hide-checkbox-column
+                    ></lightning-datatable>
+
+                    <div class="pagination slds-m-top_small slds-grid slds-grid_align-end">
+                        <lightning-button-icon
+                            icon-name="utility:chevronleft"
+                            title="Previous"
+                            onclick={onPrevPage}
+                            disabled={isFirstPage}
+                        ></lightning-button-icon>
+
+                        <div class="page-info slds-align-middle slds-m-horizontal_small">
+                            Page {pageNumber} of {totalPages}
+                        </div>
+
+                        <lightning-button-icon
+                            icon-name="utility:chevronright"
+                            title="Next"
+                            onclick={onNextPage}
+                            disabled={isLastPage}
+                        ></lightning-button-icon>
+                    </div>
+                </template>
+
+                <template if:false={hasData}>
+                    <div class="slds-text-align_center slds-p-vertical_medium empty-state">
+                        <lightning-icon icon-name="utility:search" size="large"></lightning-icon>
+                        <p class="slds-text-heading_small slds-m-top_small">No accounts found</p>
+                    </div>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+</template>
