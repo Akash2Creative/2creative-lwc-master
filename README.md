@@ -48,6 +48,7 @@ This boilerplate provides a reusable architecture for **Lightning Web Components
 - **LoggedException** → Custom exception type
 
 
+
 ---
 
 ## Apex Utilities
@@ -126,11 +127,10 @@ This boilerplate provides a reusable architecture for **Lightning Web Components
 
 ### **Wrap a component in an ErrorBoundary**
 ```html
-<c-error-boundary component-name="AccountList">
-    <c-account-list></c-account-list>
-</c-error-boundary>
+  <c-error-boundary component-name="AccountList">
+      <c-account-list></c-account-list>
+  </c-error-boundary>
 ```
-
 ### **Make server calls via apiService**
 ```js
 import getAccounts from '@salesforce/apex/AccountController.getAccounts';
