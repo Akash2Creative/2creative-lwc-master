@@ -1,3 +1,4 @@
+# 2creative-lwc-master
 # Salesforce LWC + Apex Boilerplate
 
 ## Overview
@@ -7,7 +8,7 @@ This boilerplate provides a reusable architecture for **Lightning Web Components
 - **Centralized error handling** for both client-side and server-side errors.
 - Paginated, searchable data tables.
 - **Reusable utility services** for API calls and error logging.
-- Compliance with **CloudKaptan best practices** for LWC and Apex development.
+- Compliance with **2Creative best practices** for LWC and Apex development.
 
 ---
 
@@ -22,30 +23,29 @@ This boilerplate provides a reusable architecture for **Lightning Web Components
 
 ---
 
-## Architecture
+# LWC + Apex Architecture Overview
 
-LWC (UI Layer)
-│
-├─ ErrorBoundary
-│ └─ Catches UI errors, delegates to errorService
-│
-├─ AccountList
-│ └─ Paginated, searchable Lightning Datatable
-│ └─ Calls API via apiService → Apex
-│
-Utility Services
-├─ apiService.js → Wraps Apex / Fetch calls
-├─ errorService.js → Normalizes errors, displays toast, logs server-side
-├─ errorHandler.js → LWC-level error normalization
-├─ messages.js → Constants for error types, severity, and default messages
+## LWC (UI Layer)
+- **ErrorBoundary**
+  - Catches UI errors
+  - Delegates errors to `errorService`
+- **AccountList**
+  - Paginated, searchable Lightning Datatable
+  - Calls API via `apiService` → Apex
 
-Apex Controllers
-├─ BaseController → Generic CRUD, fetch with pagination, count, delete
-├─ AccountController → Example controller for Accounts
-├─ InsertExceptionLog → Persists errors to Error_Log__c
-├─ ExceptionLogger → Centralized logging wrapper
-├─ CustomMessage → Error messages and constants
-├─ LoggedException → Custom exception type
+## Utility Services
+- **apiService.js** → Wraps Apex / Fetch calls
+- **errorService.js** → Normalizes errors, displays toast, logs server-side
+- **errorHandler.js** → LWC-level error normalization
+- **messages.js** → Constants for error types, severity, and default messages
+
+## Apex Controllers
+- **BaseController** → Generic CRUD, fetch with pagination, count, delete
+- **AccountController** → Example controller for Accounts
+- **InsertExceptionLog** → Persists errors to `Error_Log__c`
+- **ExceptionLogger** → Centralized logging wrapper
+- **CustomMessage** → Error messages and constants
+- **LoggedException** → Custom exception type
 
 
 ---
@@ -129,6 +129,7 @@ Apex Controllers
 <c-error-boundary component-name="AccountList">
     <c-account-list></c-account-list>
 </c-error-boundary>
+```
 
 ### **Make server calls via apiService**
 ```js
@@ -136,6 +137,7 @@ import getAccounts from '@salesforce/apex/AccountController.getAccounts';
 import { callApex } from 'c/apiService';
 
 const accounts = await callApex(getAccounts, { pageSize: 10, pageNumber: 1 }, this);
+```
 
 ### **Log a manual exception**
 ```js
@@ -146,3 +148,4 @@ try {
 } catch (err) {
     await errorService.handleError(err, this, 'CustomComponent');
 }
+```
